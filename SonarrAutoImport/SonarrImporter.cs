@@ -15,7 +15,7 @@ namespace SonarrAuto
         private static string[] movieExtensions = {
                 ".mkv", ".avi", ".wmv", ".mov", ".amv",
                 ".mp4", ".m4a", ".m4v", ".f4v", ".f4a", ".m4b", ".m4r", ".f4b",
-                ".mpg", ".mp2", ".mpeg", ".mpe", ".mpv"
+                ".mpg", ".mp2", ".mpeg", ".mpe", ".mpv" , ".ts"
             };
 
         [DataContract(Name = "payload")]
@@ -24,7 +24,7 @@ namespace SonarrAuto
             public string path;
             public string name; // API command name
             public string importMode = "Move";
-            public string downloadClientId = "SonarrAutoImporter";
+            public string downloadClientId = "Generic";
         }
 
         [DataContract(Name = "transform")]
@@ -180,7 +180,7 @@ namespace SonarrAuto
                 request.Resource = "api/command";
                 request.RequestFormat = DataFormat.Json;
                 request.AddJsonBody(payload);
-                request.AddHeader("User-Agent", "Sonarr Auto-Import");
+                request.AddHeader("User-Agent", "generic");
                 request.AddHeader("X-Api-Key", service.apiKey);
 
                 var response = client.Execute(request);
